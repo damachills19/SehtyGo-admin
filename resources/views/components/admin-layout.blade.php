@@ -36,7 +36,7 @@
         class="w-64 shrink-0 bg-[#101B3D] text-white flex flex-col fixed inset-y-0 left-0 z-40 transform transition-transform duration-200 ease-in-out lg:static lg:translate-x-0"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
         <div class="h-16 flex items-center gap-2 px-6 border-b border-white/10">
-            <div class="h-8 w-8 rounded-lg bg-[#4C6FFF] flex items-center justify-center font-bold text-sm shrink-0">S</div>
+            <img src="{{ asset('logo.png') }}" alt="SehtyGo" class="h-8 w-8 rounded-lg object-cover shrink-0">
             <span class="font-semibold tracking-wide">SehtyGo Admin</span>
             <button @click="sidebarOpen = false" class="ml-auto lg:hidden text-white/60 hover:text-white">
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
