@@ -7,12 +7,16 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiderPayoutController;
+use App\Http\Controllers\SupabaseWebhookController;
 use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
+Route::post('/webhooks/supabase/new-registration', [SupabaseWebhookController::class, 'newRegistration'])
+    ->name('webhooks.supabase.new-registration');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -13,6 +13,21 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        @auth
+            <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+            <script>
+                window.OneSignalDeferred = window.OneSignalDeferred || [];
+                OneSignalDeferred.push(async function(OneSignal) {
+                    await OneSignal.init({
+                        appId: "{{ config('services.onesignal.app_id') }}",
+                        allowLocalhostAsSecureOrigin: true,
+                    });
+                    await OneSignal.User.addTag('role', 'admin');
+                    await OneSignal.Notifications.requestPermission();
+                });
+            </script>
+        @endauth
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
