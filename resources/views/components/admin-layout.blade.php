@@ -40,7 +40,7 @@
                     ['route' => 'accounts.index', 'label' => 'Accounts', 'icon' => 'users'],
                     ['route' => 'bookings.index', 'label' => 'Bookings', 'icon' => 'calendar'],
                     ['route' => 'catalog.index', 'label' => 'Medicine Catalog', 'icon' => 'box'],
-                    ['route' => 'riders.payouts', 'label' => 'Rider Payouts', 'icon' => 'cash'],
+                    ['route' => 'riders.payouts', 'label' => 'Rider Deliveries', 'icon' => 'cash'],
                     ['route' => 'support.index', 'label' => 'Support Tickets', 'icon' => 'chat'],
                 ];
                 $icons = [

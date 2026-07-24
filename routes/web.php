@@ -30,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
 
     Route::get('/riders/payouts', [RiderPayoutController::class, 'index'])->name('riders.payouts');
-    Route::post('/riders/payouts/{riderId}', [RiderPayoutController::class, 'markPaid'])->name('riders.payouts.pay');
 
     Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
     Route::delete('/catalog/{id}', [CatalogController::class, 'destroy'])->name('catalog.destroy');
