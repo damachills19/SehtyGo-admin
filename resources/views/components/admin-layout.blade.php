@@ -23,13 +23,26 @@
     </script>
 </head>
 <body class="font-sans antialiased bg-gray-50">
-<div class="min-h-screen flex">
+<div class="min-h-screen flex" x-data="{ sidebarOpen: false }">
 
-    {{-- Sidebar --}}
-    <aside class="w-64 shrink-0 bg-[#101B3D] text-white flex flex-col">
+    {{-- Mobile backdrop --}}
+    <div x-show="sidebarOpen"
+         x-cloak
+         @click="sidebarOpen = false"
+         class="fixed inset-0 bg-black/40 z-30 lg:hidden"></div>
+
+    {{-- Sidebar: static column on lg+, off-canvas drawer below that --}}
+    <aside
+        class="w-64 shrink-0 bg-[#101B3D] text-white flex flex-col fixed inset-y-0 left-0 z-40 transform transition-transform duration-200 ease-in-out lg:static lg:translate-x-0"
+        :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
         <div class="h-16 flex items-center gap-2 px-6 border-b border-white/10">
-            <div class="h-8 w-8 rounded-lg bg-[#4C6FFF] flex items-center justify-center font-bold text-sm">S</div>
+            <div class="h-8 w-8 rounded-lg bg-[#4C6FFF] flex items-center justify-center font-bold text-sm shrink-0">S</div>
             <span class="font-semibold tracking-wide">SehtyGo Admin</span>
+            <button @click="sidebarOpen = false" class="ml-auto lg:hidden text-white/60 hover:text-white">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
         </div>
 
         <nav class="flex-1 px-3 py-6 space-y-1">
@@ -83,11 +96,18 @@
 
     {{-- Main --}}
     <div class="flex-1 flex flex-col min-w-0">
-        <header class="h-16 bg-white border-b flex items-center justify-between px-8">
-            <h1 class="text-lg font-semibold text-gray-800">{{ $title ?? 'Dashboard' }}</h1>
+        <header class="h-16 bg-white border-b flex items-center gap-3 justify-between px-4 sm:px-8">
+            <div class="flex items-center gap-3 min-w-0">
+                <button @click="sidebarOpen = true" class="lg:hidden text-gray-500 hover:text-gray-800 shrink-0">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <h1 class="text-lg font-semibold text-gray-800 truncate">{{ $title ?? 'Dashboard' }}</h1>
+            </div>
         </header>
 
-        <main class="flex-1 p-8">
+        <main class="flex-1 p-4 sm:p-8 overflow-x-auto">
             @if (session('status'))
                 <div class="mb-6 bg-green-50 text-green-700 border border-green-200 px-4 py-3 rounded-lg text-sm">
                     {{ session('status') }}
