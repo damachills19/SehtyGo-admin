@@ -8,6 +8,19 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+            await OneSignal.init({
+                appId: "{{ config('services.onesignal.app_id') }}",
+                allowLocalhostAsSecureOrigin: true,
+            });
+            await OneSignal.User.addTag('role', 'admin');
+            await OneSignal.Notifications.requestPermission();
+        });
+    </script>
 </head>
 <body class="font-sans antialiased bg-gray-50">
 <div class="min-h-screen flex">
