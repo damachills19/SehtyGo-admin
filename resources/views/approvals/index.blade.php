@@ -40,8 +40,14 @@
                                         </td>
                                         <td class="py-3 px-6">
                                             @php
-                                                $docs = $item['certificate_urls'] ?? ($item['license_doc_url'] ?? null);
-                                                $docs = is_array($docs) ? $docs : array_filter([$docs]);
+                                                // certificate_urls (doctors) / license_doc_urls (lab, pharmacy,
+                                                // rider) are the current multi-document arrays; license_doc_url
+                                                // is the older single-document column, kept as a fallback for
+                                                // any already-submitted row that predates the array columns.
+                                                $docs = $item['certificate_urls']
+                                                    ?? $item['license_doc_urls']
+                                                    ?? ($item['license_doc_url'] ?? null);
+                                                $docs = is_array($docs) ? array_values(array_filter($docs)) : array_filter([$docs]);
                                                 $idDoc = $item['national_id_doc_url'] ?? null;
                                             @endphp
                                             @forelse ($docs as $i => $doc)
