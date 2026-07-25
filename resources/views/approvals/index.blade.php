@@ -42,12 +42,18 @@
                                             @php
                                                 $docs = $item['certificate_urls'] ?? ($item['license_doc_url'] ?? null);
                                                 $docs = is_array($docs) ? $docs : array_filter([$docs]);
+                                                $idDoc = $item['national_id_doc_url'] ?? null;
                                             @endphp
-                                            @forelse ($docs as $doc)
-                                                <a href="{{ $doc }}" target="_blank" class="text-blue-600 hover:underline block">View</a>
+                                            @forelse ($docs as $i => $doc)
+                                                <a href="{{ $doc }}" target="_blank" class="text-blue-600 hover:underline block">
+                                                    {{ count($docs) > 1 ? 'View doc '.($i + 1) : 'View' }}
+                                                </a>
                                             @empty
                                                 <span class="text-gray-400">None</span>
                                             @endforelse
+                                            @if ($idDoc)
+                                                <a href="{{ $idDoc }}" target="_blank" class="text-blue-600 hover:underline block">View National ID</a>
+                                            @endif
                                         </td>
                                         <td class="py-3 px-6">
                                             @php
