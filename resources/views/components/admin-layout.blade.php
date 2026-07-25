@@ -33,7 +33,7 @@
 
     {{-- Sidebar: static column on lg+, off-canvas drawer below that --}}
     <aside
-        class="w-64 shrink-0 bg-[#16243E] text-white flex flex-col fixed inset-y-0 left-0 z-40 transform transition-transform duration-200 ease-in-out lg:static lg:translate-x-0"
+        class="w-64 shrink-0 bg-[#101B3D] text-white flex flex-col fixed inset-y-0 left-0 z-40 transform transition-transform duration-200 ease-in-out lg:static lg:translate-x-0"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
         <div class="h-16 flex items-center gap-2 px-6 border-b border-white/10">
             <img src="{{ asset('logo.png') }}" alt="SehtyGo" class="h-8 w-8 rounded-lg object-cover shrink-0">
@@ -71,7 +71,7 @@
                 @php $active = request()->routeIs($item['route']) || request()->routeIs(str_replace('.index', '.*', $item['route'])); @endphp
                 <a href="{{ route($item['route']) }}"
                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition
-                   {{ $active ? 'bg-[#16243E] text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
+                   {{ $active ? 'bg-[#4C6FFF] text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
                     <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icons[$item['icon']] }}" />
                     </svg>

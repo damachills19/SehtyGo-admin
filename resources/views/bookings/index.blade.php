@@ -1,10 +1,10 @@
 <x-admin-layout :title="'Bookings'">
     <div class="bg-white rounded-xl border overflow-hidden">
         <div class="px-6 py-4 border-b flex gap-1">
-            <a href="{{ route('bookings.index') }}" class="px-3 py-1.5 rounded-lg text-sm font-medium {{ !$status ? 'bg-[#16243E] text-white' : 'text-gray-600 hover:bg-gray-100' }}">All</a>
+            <a href="{{ route('bookings.index') }}" class="px-3 py-1.5 rounded-lg text-sm font-medium {{ !$status ? 'bg-[#4C6FFF] text-white' : 'text-gray-600 hover:bg-gray-100' }}">All</a>
             @foreach (['Upcoming', 'Completed', 'Cancelled'] as $s)
                 <a href="{{ route('bookings.index', ['status' => $s]) }}"
-                   class="px-3 py-1.5 rounded-lg text-sm font-medium capitalize {{ $status === $s ? 'bg-[#16243E] text-white' : 'text-gray-600 hover:bg-gray-100' }}">
+                   class="px-3 py-1.5 rounded-lg text-sm font-medium capitalize {{ $status === $s ? 'bg-[#4C6FFF] text-white' : 'text-gray-600 hover:bg-gray-100' }}">
                     {{ $s }}
                 </a>
             @endforeach

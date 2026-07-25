@@ -2,37 +2,37 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-8">
         @php
             $cards = [
-                ['label' => 'Doctors', 'value' => $counts['doctors'], 'color' => 'bg-[#16243E]/5 text-[#16243E]'],
+                ['label' => 'Doctors', 'value' => $counts['doctors'], 'color' => 'bg-blue-50 text-blue-700'],
                 ['label' => 'Labs', 'value' => $counts['labs'], 'color' => 'bg-emerald-50 text-emerald-700'],
                 ['label' => 'Pharmacies', 'value' => $counts['pharmacies'], 'color' => 'bg-amber-50 text-amber-700'],
                 ['label' => 'Riders', 'value' => $counts['riders'], 'color' => 'bg-rose-50 text-rose-700'],
-                ['label' => 'Patients', 'value' => $counts['patients'], 'color' => 'bg-[#0EA5A4]/10 text-[#0EA5A4]'],
+                ['label' => 'Patients', 'value' => $counts['patients'], 'color' => 'bg-indigo-50 text-indigo-700'],
                 ['label' => 'Bookings', 'value' => $counts['bookings'], 'color' => 'bg-purple-50 text-purple-700'],
                 ['label' => 'Medicines', 'value' => $counts['medicines'], 'color' => 'bg-teal-50 text-teal-700'],
                 ['label' => 'Open Tickets', 'value' => $counts['support_tickets'], 'color' => 'bg-orange-50 text-orange-700'],
             ];
         @endphp
         @foreach ($cards as $card)
-            <div class="bg-white rounded-2xl shadow-sm p-5">
+            <div class="bg-white rounded-xl border p-5">
                 <div class="text-2xl font-bold text-gray-900">{{ $card['value'] }}</div>
                 <div class="text-sm text-gray-500 mt-1">{{ $card['label'] }}</div>
             </div>
         @endforeach
     </div>
 
-    <div class="bg-white rounded-2xl shadow-sm p-6 mb-8">
+    <div class="bg-white rounded-xl border p-6 mb-8">
         <h3 class="font-semibold text-gray-800 mb-4">User Growth (last 6 months)</h3>
         <canvas id="growthChart" height="90"></canvas>
     </div>
 
     @if ($pendingCount > 0)
-        <a href="{{ route('approvals.index') }}" class="block mb-8 bg-[#0EA5A4]/10 border border-[#0EA5A4]/20 text-[#16243E] rounded-2xl px-5 py-4 hover:bg-[#0EA5A4]/15 transition">
+        <a href="{{ route('approvals.index') }}" class="block mb-8 bg-blue-50 border border-blue-200 text-blue-800 rounded-xl px-5 py-4 hover:bg-blue-100 transition">
             <span class="font-semibold">{{ $pendingCount }}</span> account{{ $pendingCount === 1 ? '' : 's' }} waiting for approval — click to review.
         </a>
     @endif
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="bg-white rounded-2xl shadow-sm p-6">
+        <div class="bg-white rounded-xl border p-6">
             <h3 class="font-semibold text-gray-800 mb-4">Recent Bookings</h3>
             @forelse ($recentBookings as $b)
                 <div class="flex items-center justify-between py-2 border-b last:border-0 text-sm">
@@ -47,7 +47,7 @@
             @endforelse
         </div>
 
-        <div class="bg-white rounded-2xl shadow-sm p-6">
+        <div class="bg-white rounded-xl border p-6">
             <h3 class="font-semibold text-gray-800 mb-4">Open Support Tickets</h3>
             @forelse ($openTickets as $t)
                 <div class="py-2 border-b last:border-0 text-sm">
@@ -69,7 +69,7 @@
                     data: {
                         labels: @json($growth['labels']),
                         datasets: [
-                            { label: 'Doctors', data: @json($growth['series']['Doctors']), borderColor: '#16243E', backgroundColor: '#16243E', tension: 0.35 },
+                            { label: 'Doctors', data: @json($growth['series']['Doctors']), borderColor: '#3B82F6', backgroundColor: '#3B82F6', tension: 0.35 },
                             { label: 'Labs', data: @json($growth['series']['Labs']), borderColor: '#10B981', backgroundColor: '#10B981', tension: 0.35 },
                             { label: 'Pharmacies', data: @json($growth['series']['Pharmacies']), borderColor: '#F59E0B', backgroundColor: '#F59E0B', tension: 0.35 },
                             { label: 'Riders', data: @json($growth['series']['Riders']), borderColor: '#F43F5E', backgroundColor: '#F43F5E', tension: 0.35 },

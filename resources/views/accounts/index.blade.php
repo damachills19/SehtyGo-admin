@@ -5,7 +5,7 @@
                 @foreach ($roles as $r)
                     <a href="{{ route('accounts.index', ['role' => $r]) }}"
                        class="px-3 py-1.5 rounded-lg text-sm font-medium capitalize
-                       {{ $role === $r ? 'bg-[#16243E] text-white' : 'text-gray-600 hover:bg-gray-100' }}">
+                       {{ $role === $r ? 'bg-[#4C6FFF] text-white' : 'text-gray-600 hover:bg-gray-100' }}">
                         {{ $r }}s
                     </a>
                 @endforeach
@@ -14,7 +14,7 @@
             <form method="GET" action="{{ route('accounts.index') }}" class="flex gap-2">
                 <input type="hidden" name="role" value="{{ $role }}">
                 <input type="text" name="q" value="{{ $search }}" placeholder="Search by name..."
-                       class="border-gray-300 rounded-lg text-sm focus:ring-[#16243E] focus:border-[#16243E]">
+                       class="border-gray-300 rounded-lg text-sm focus:ring-[#4C6FFF] focus:border-[#4C6FFF]">
                 <button class="bg-gray-100 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-gray-200">Search</button>
             </form>
         </div>

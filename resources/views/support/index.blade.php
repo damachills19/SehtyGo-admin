@@ -1,10 +1,10 @@
 <x-admin-layout :title="'Support Tickets'">
     <div class="bg-white rounded-xl border overflow-hidden mb-6">
         <div class="px-6 py-4 border-b flex gap-1">
-            <a href="{{ route('support.index') }}" class="px-3 py-1.5 rounded-lg text-sm font-medium {{ !$status ? 'bg-[#16243E] text-white' : 'text-gray-600 hover:bg-gray-100' }}">All</a>
+            <a href="{{ route('support.index') }}" class="px-3 py-1.5 rounded-lg text-sm font-medium {{ !$status ? 'bg-[#4C6FFF] text-white' : 'text-gray-600 hover:bg-gray-100' }}">All</a>
             @foreach (['open', 'in_progress', 'resolved'] as $s)
                 <a href="{{ route('support.index', ['status' => $s]) }}"
-                   class="px-3 py-1.5 rounded-lg text-sm font-medium capitalize {{ $status === $s ? 'bg-[#16243E] text-white' : 'text-gray-600 hover:bg-gray-100' }}">
+                   class="px-3 py-1.5 rounded-lg text-sm font-medium capitalize {{ $status === $s ? 'bg-[#4C6FFF] text-white' : 'text-gray-600 hover:bg-gray-100' }}">
                     {{ str_replace('_', ' ', $s) }}
                 </a>
             @endforeach
@@ -48,14 +48,14 @@
                 <form method="POST" action="{{ route('support.reply', $t['id']) }}" class="mt-4 flex flex-col gap-2">
                     @csrf
                     <textarea name="admin_reply" rows="2" placeholder="Write a reply the user will see, e.g. &quot;We're looking into this, will resolve within a day.&quot;"
-                              class="w-full border-gray-300 rounded-lg text-sm focus:ring-[#16243E] focus:border-[#16243E]">{{ $t['admin_reply'] ?? '' }}</textarea>
+                              class="w-full border-gray-300 rounded-lg text-sm focus:ring-[#4C6FFF] focus:border-[#4C6FFF]">{{ $t['admin_reply'] ?? '' }}</textarea>
                     <div class="flex items-center justify-between">
                         <select name="status" class="border-gray-300 rounded-lg text-xs">
                             <option value="open" @selected($t['status'] === 'open')>Open</option>
                             <option value="in_progress" @selected($t['status'] === 'in_progress')>In progress</option>
                             <option value="resolved" @selected($t['status'] === 'resolved')>Resolved</option>
                         </select>
-                        <button class="bg-[#16243E] text-white px-4 py-1.5 rounded-lg text-xs font-medium hover:bg-blue-700">
+                        <button class="bg-[#4C6FFF] text-white px-4 py-1.5 rounded-lg text-xs font-medium hover:bg-blue-700">
                             Send Reply
                         </button>
                     </div>

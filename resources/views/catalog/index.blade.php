@@ -3,7 +3,7 @@
         <div class="px-6 py-4 border-b flex justify-end">
             <form method="GET" action="{{ route('catalog.index') }}" class="flex gap-2">
                 <input type="text" name="q" value="{{ $search }}" placeholder="Search medicines..."
-                       class="border-gray-300 rounded-lg text-sm focus:ring-[#16243E] focus:border-[#16243E]">
+                       class="border-gray-300 rounded-lg text-sm focus:ring-[#4C6FFF] focus:border-[#4C6FFF]">
                 <button class="bg-gray-100 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-gray-200">Search</button>
             </form>
         </div>
