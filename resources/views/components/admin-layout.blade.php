@@ -75,7 +75,12 @@
                     <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icons[$item['icon']] }}" />
                     </svg>
-                    {{ $item['label'] }}
+                    <span class="flex-1">{{ $item['label'] }}</span>
+                    @if ($item['route'] === 'approvals.index' && ($pendingApprovalsCount ?? 0) > 0)
+                        <span class="shrink-0 min-w-[1.25rem] h-5 flex items-center justify-center rounded-full bg-red-500 text-white text-xs font-semibold px-1.5">
+                            {{ $pendingApprovalsCount }}
+                        </span>
+                    @endif
                 </a>
             @endforeach
         </nav>

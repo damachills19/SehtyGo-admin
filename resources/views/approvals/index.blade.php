@@ -19,6 +19,7 @@
                                     <th class="py-3 px-6">License #</th>
                                     <th class="py-3 px-6">Submitted</th>
                                     <th class="py-3 px-6">Documents</th>
+                                    <th class="py-3 px-6">AI Check</th>
                                     <th class="py-3 px-6">Action</th>
                                 </tr>
                             </thead>
@@ -47,6 +48,24 @@
                                             @empty
                                                 <span class="text-gray-400">None</span>
                                             @endforelse
+                                        </td>
+                                        <td class="py-3 px-6">
+                                            @php
+                                                $aiStatus = $item['ai_verification_status'] ?? 'pending';
+                                                $aiNotes = $item['ai_verification_notes'] ?? null;
+                                                $aiBadge = match ($aiStatus) {
+                                                    'passed' => ['bg-green-100 text-green-700', 'Passed'],
+                                                    'flagged' => ['bg-amber-100 text-amber-700', 'Flagged'],
+                                                    default => ['bg-gray-100 text-gray-500', 'Pending'],
+                                                };
+                                            @endphp
+                                            <span
+                                                class="text-xs font-medium px-2 py-1 rounded-full {{ $aiBadge[0] }}"
+                                                @if ($aiNotes) title="{{ $aiNotes }}" @endif
+                                            >{{ $aiBadge[1] }}</span>
+                                            @if ($aiNotes)
+                                                <p class="text-xs text-gray-400 mt-1 max-w-xs">{{ \Illuminate\Support\Str::limit($aiNotes, 80) }}</p>
+                                            @endif
                                         </td>
                                         <td class="py-3 px-6 whitespace-nowrap space-x-2">
                                             <form method="POST" action="{{ route('approvals.update', [$role, $item['id']]) }}" class="inline">
